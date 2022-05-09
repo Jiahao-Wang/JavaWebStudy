@@ -15,6 +15,10 @@ public class FruitDAOImpl extends BaseDAO<Fruit> implements FruitDAO {
 		return super.executeQuery("select * from t_fruit limit ?, 4", (pageNo-1) * 4);
 	}
 
+	@Override
+	public List<Fruit> getFruitList(String keyword, Integer pageNo) {
+		return super.executeQuery("select * from t_fruit where fname like ? or remark like ? limit ?, 4", "%"+keyword+"%", "%"+keyword+"%", (pageNo-1) * 4);
+	}
 
 
 	@Override
@@ -50,5 +54,10 @@ public class FruitDAOImpl extends BaseDAO<Fruit> implements FruitDAO {
 	@Override
 	public Long getFruitCount() {
 		return (Long)super.executeComplexQuery("select count(*) from t_fruit")[0];
+	}
+
+	@Override
+	public Long getFruitCount(String keyword) {
+		return (Long)super.executeComplexQuery("select count(*) from t_fruit where fname like ? or remark like ?","%"+keyword+"%","%"+keyword+"%")[0];
 	}
 }

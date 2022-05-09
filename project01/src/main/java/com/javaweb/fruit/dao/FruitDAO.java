@@ -13,6 +13,8 @@ public interface FruitDAO {
 	//查询库存列表
 	List<Fruit> getFruitList(Integer pageNo);
 
+	List<Fruit> getFruitList(String keyword, Integer pageNo);
+
 	List<Fruit> getFruitList();
 
 	//新增库存
@@ -30,4 +32,6 @@ public interface FruitDAO {
 	Fruit getFruitByFid(Integer fid);
 
 	Long getFruitCount();
+
+	Long getFruitCount(String keyword);
 }
