@@ -1,5 +1,6 @@
 package com.javawebstudy.mybatis;
 
+import com.javawebstudy.mybatis.mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -10,10 +11,11 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * @author Jiahao Wang @Description
- * @create 2022-05-19 00:14
+ * @author Jiahao Wang
+ * @Description
+ * @create 2022-05-19 09:48
  */
-public class Client {
+public class Client2 {
 	public static void main(String[] args) throws IOException {
 
 		// 加载 mybatis 核心配置文件，获取 SqlSessionFactory
@@ -24,10 +26,14 @@ public class Client {
 		// 获取 SqlSession 对象来执行 sql
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 
-		// 执行 sql
-		List<User> users = sqlSession.selectList("com.javawebstudy.mybatis.mapper.UserMapper.selectAll");
+        // 执行 sql
+         //		List<User> users = sqlSession.selectList("test.selectAll");
 
-        System.out.println(users);
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+		List<User> users =userMapper.selectAll();
+
+		System.out.println(users);
 
 		sqlSession.close();
 	}

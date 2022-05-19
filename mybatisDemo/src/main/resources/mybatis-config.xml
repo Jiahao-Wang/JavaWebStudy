@@ -15,6 +15,7 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="UserMapper.xml"/>
+<!--        <mapper resource="com/javawebstudy/mybatis/mapper/UserMapper.xml"/>-->
+        <package name="com.javawebstudy.mybatis.mapper"/>
     </mappers>
 </configuration>
